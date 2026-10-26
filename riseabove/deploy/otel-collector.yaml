@@ -1,0 +1,44 @@
+# Claude Code -> (OTLP/HTTP + bearer token) -> collector -> Prometheus scrape.
+#
+# Claude Code sends delta counters and, by our managed settings, no session.id label. Summing
+# deltas per user/model/type gives long-lived counters that Prometheus can rate() correctly;
+# per-session cumulative series would each start at a non-zero value, which increase() undercounts.
+
+extensions:
+  health_check:
+    endpoint: 0.0.0.0:13133
+  bearertokenauth:
+    scheme: Bearer
+    token: ${env:CLAUDE_OTEL_TOKEN}
+
+receivers:
+  otlp:
+    protocols:
+      http:
+        endpoint: 0.0.0.0:4318
+        auth:
+          authenticator: bearertokenauth
+
+processors:
+  memory_limiter:
+    check_interval: 1s
+    limit_mib: 200
+  deltatocumulative:
+    # Keep a user's counters alive across quiet days so they don't restart as new series.
+    max_stale: 168h
+  batch: {}
+
+exporters:
+  prometheus:
+    endpoint: 0.0.0.0:8889
+    metric_expiration: 168h
+    resource_to_telemetry_conversion:
+      enabled: true
+
+service:
+  extensions: [health_check, bearertokenauth]
+  pipelines:
+    metrics:
+      receivers: [otlp]
+      processors: [memory_limiter, deltatocumulative, batch]
+      exporters: [prometheus]

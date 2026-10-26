@@ -1,0 +1,13 @@
+- name: Local administrator accounts
+  description: Lists every local account in the admin group on each Mac and Windows PC. Use it to plan and verify the move to standard (non-admin) accounts.
+  query: |-
+    SELECT u.username, u.uid, u.directory, g.groupname
+    FROM users u
+    JOIN user_groups ug ON ug.uid = u.uid
+    JOIN groups g ON g.gid = ug.gid
+    WHERE g.groupname IN ('admin', 'Administrators');
+  interval: 86400
+  observer_can_run: true
+  automations_enabled: false
+  logging: snapshot
+  platform: darwin,windows

@@ -1,0 +1,6 @@
+- name: Firewall and antivirus healthy (Windows)
+  query: SELECT 1 FROM windows_security_center WHERE firewall = 'Good' AND antivirus = 'Good';
+  critical: true
+  description: Checks that Windows Security reports the firewall and antivirus (Microsoft Defender or another product) as healthy.
+  resolution: Open Windows Security and turn on anything marked with a warning under "Virus & threat protection" and "Firewall & network protection". Contact IT if a setting is greyed out.
+  platform: windows

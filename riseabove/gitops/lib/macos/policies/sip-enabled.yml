@@ -1,0 +1,6 @@
+- name: System Integrity Protection enabled
+  query: SELECT 1 FROM sip_config WHERE config_flag = 'sip' AND enabled = 1;
+  critical: true
+  description: Checks that System Integrity Protection (SIP) is on. SIP should never be off on a company Mac.
+  resolution: Contact IT immediately. SIP can only be turned back on from macOS Recovery.
+  platform: darwin

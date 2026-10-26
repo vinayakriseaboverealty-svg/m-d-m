@@ -1,0 +1,15 @@
+- name: Daily account is a standard user
+  query: |-
+    SELECT 1 WHERE EXISTS (
+      SELECT 1 FROM users WHERE username = 'itadmin'
+    )
+    AND NOT EXISTS (
+      SELECT 1 FROM users u
+      JOIN user_groups ug ON ug.uid = u.uid
+      JOIN groups g ON g.gid = ug.gid
+      WHERE g.groupname = 'admin' AND u.uid >= 501 AND u.username != 'itadmin'
+    );
+  critical: false
+  description: Passes when the IT admin account ("itadmin") exists and no other user account is an administrator. Admin users can remove the MDM profile on Macs that aren't in Apple Business Manager.
+  resolution: IT will move your account to a standard user. Ask IT when you need something installed that requires admin rights.
+  platform: darwin

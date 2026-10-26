@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!-- Adapted from Fleet's it-and-security/lib/macos/configuration-profiles/firewall.mobileconfig. -->
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>AllowSigned</key>
+			<true/>
+			<key>BlockAllIncoming</key>
+			<false/>
+			<key>EnableFirewall</key>
+			<true/>
+			<key>EnableStealthMode</key>
+			<false/>
+			<key>PayloadDisplayName</key>
+			<string>Firewall</string>
+			<key>PayloadIdentifier</key>
+			<string>com.riseabovereality.firewall.settings</string>
+			<key>PayloadType</key>
+			<string>com.apple.security.firewall</string>
+			<key>PayloadUUID</key>
+			<string>B8FC7288-A595-4BE2-9C81-A9E8D2CC66D3</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>Turns on the macOS application firewall and allows signed apps to receive connections.</string>
+	<key>PayloadDisplayName</key>
+	<string>Firewall</string>
+	<key>PayloadIdentifier</key>
+	<string>com.riseabovereality.firewall</string>
+	<key>PayloadOrganization</key>
+	<string>Rise Above Reality</string>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>C1903335-CE05-4727-AA82-273D7AFB0747</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadRemovalDisallowed</key>
+	<true/>
+</dict>
+</plist>

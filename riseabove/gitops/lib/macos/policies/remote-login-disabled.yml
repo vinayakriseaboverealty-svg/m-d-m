@@ -1,0 +1,6 @@
+- name: Remote Login (SSH) disabled
+  query: SELECT 1 FROM sharing_preferences WHERE CAST(remote_login AS INTEGER) = 0;
+  critical: false
+  description: Checks that the Mac doesn't accept incoming SSH connections.
+  resolution: Turn off Remote Login in  > System Settings > General > Sharing. If you need it for work, ask IT.
+  platform: darwin

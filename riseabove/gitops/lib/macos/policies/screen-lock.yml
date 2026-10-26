@@ -1,0 +1,21 @@
+- name: Screen lock after inactivity (15 minutes or less)
+  query: |-
+    SELECT 1 WHERE EXISTS (
+      SELECT 1 FROM managed_policies
+      WHERE domain = 'com.apple.screensaver' AND name = 'askForPasswordDelay'
+        AND CAST(value AS INTEGER) <= 60
+    )
+    AND EXISTS (
+      SELECT 1 FROM managed_policies
+      WHERE domain = 'com.apple.screensaver' AND name = 'idleTime'
+        AND CAST(value AS INTEGER) BETWEEN 1 AND 900
+    )
+    AND EXISTS (
+      SELECT 1 FROM managed_policies
+      WHERE domain = 'com.apple.screensaver' AND name = 'askForPassword'
+        AND (value = 1 OR value = '1')
+    );
+  critical: false
+  description: Checks that the "Screen lock after inactivity" profile is applied (screen saver within 15 minutes, password required within a minute).
+  resolution: Screen lock is set automatically by the MDM. If this fails, restart the Mac, then open Fleet Desktop and click Refetch. If it still fails, contact IT.
+  platform: darwin

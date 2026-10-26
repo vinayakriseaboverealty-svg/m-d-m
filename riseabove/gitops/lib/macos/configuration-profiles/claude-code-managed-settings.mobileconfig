@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+  Claude Code managed settings (preference domain com.anthropic.claudecode), which users can't
+  override. Turns on usage telemetry (metrics only: tokens, cost, sessions, active time, lines of
+  code) and sends it to our collector. Prompt text, responses and tool details stay off, which is
+  Claude Code's default. Shape follows anthropics/claude-code examples/mdm.
+  Fleet fills in $FLEET_SECRET_CLAUDE_OTEL_TOKEN and $FLEET_VAR_HOST_HARDWARE_SERIAL per device.
+-->
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadDisplayName</key>
+			<string>Claude Code</string>
+			<key>PayloadIdentifier</key>
+			<string>com.riseabovereality.claude-code-settings.preferences</string>
+			<key>PayloadType</key>
+			<string>com.apple.ManagedClient.preferences</string>
+			<key>PayloadUUID</key>
+			<string>986FD51B-C8F7-4CE8-BE45-F7FFD9C3785A</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadContent</key>
+			<dict>
+				<key>com.anthropic.claudecode</key>
+				<dict>
+					<key>Forced</key>
+					<array>
+						<dict>
+							<key>mcx_preference_settings</key>
+							<dict>
+								<key>env</key>
+								<dict>
+									<key>CLAUDE_CODE_ENABLE_TELEMETRY</key>
+									<string>1</string>
+									<key>OTEL_METRICS_EXPORTER</key>
+									<string>otlp</string>
+									<key>OTEL_EXPORTER_OTLP_PROTOCOL</key>
+									<string>http/protobuf</string>
+									<key>OTEL_EXPORTER_OTLP_ENDPOINT</key>
+									<string>https://otel.riseabovereality.com</string>
+									<key>OTEL_EXPORTER_OTLP_HEADERS</key>
+									<string>Authorization=Bearer $FLEET_SECRET_CLAUDE_OTEL_TOKEN</string>
+									<key>OTEL_METRICS_INCLUDE_SESSION_ID</key>
+									<string>false</string>
+									<key>OTEL_RESOURCE_ATTRIBUTES</key>
+									<string>host.serial=$FLEET_VAR_HOST_HARDWARE_SERIAL</string>
+								</dict>
+							</dict>
+						</dict>
+					</array>
+				</dict>
+			</dict>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>Turns on Claude Code usage reporting (no prompt or response content) for Rise Above Reality.</string>
+	<key>PayloadDisplayName</key>
+	<string>Claude Code managed settings</string>
+	<key>PayloadIdentifier</key>
+	<string>com.riseabovereality.claude-code-settings</string>
+	<key>PayloadOrganization</key>
+	<string>Rise Above Reality</string>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>F5235420-503C-400E-B70D-773AC5B3A78C</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadRemovalDisallowed</key>
+	<true/>
+</dict>
+</plist>
