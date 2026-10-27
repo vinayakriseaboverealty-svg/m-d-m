@@ -1,7 +1,0 @@
-- name: FileVault disk encryption enabled
-  query: SELECT 1 FROM filevault_status WHERE status = 'on';
-  critical: true
-  description: Checks that FileVault is on. Fleet Free can't enforce FileVault, so this policy is how IT finds unencrypted Macs.
-  resolution: |-
-    Turn on FileVault in  > System Settings > Privacy & Security > FileVault. When asked how to unlock the disk if you forget your password, choose "Create a recovery key and do not use my iCloud account", and send the recovery key to IT. Restart when prompted.
-  platform: darwin

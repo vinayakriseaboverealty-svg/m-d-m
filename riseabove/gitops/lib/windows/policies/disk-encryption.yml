@@ -1,6 +1,0 @@
-- name: Disk encryption enabled (Windows)
-  query: SELECT 1 FROM bitlocker_info WHERE drive_letter = 'C:' AND protection_status = 1;
-  critical: true
-  description: Checks that BitLocker (or Device Encryption on Windows Home) protects the system drive.
-  resolution: Turn on encryption in Settings > Privacy & security > Device encryption (Windows Home) or BitLocker (Windows Pro). Save the recovery key somewhere IT can reach, then restart. Contact IT if neither option is available.
-  platform: windows

@@ -1,6 +1,0 @@
-# Scripts run on Linux (droplet) and macOS; keep LF even when edited on Windows.
-*.sh text eol=lf
-Caddyfile text eol=lf
-*.yml text eol=lf
-*.yaml text eol=lf
-*.mobileconfig text eol=lf

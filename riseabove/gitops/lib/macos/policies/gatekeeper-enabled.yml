@@ -1,6 +1,0 @@
-- name: Gatekeeper enabled
-  query: SELECT 1 FROM gatekeeper WHERE assessments_enabled = 1;
-  critical: false
-  description: Checks that Gatekeeper is on, so only apps from the App Store and identified developers run. The "Gatekeeper" configuration profile enforces it.
-  resolution: Gatekeeper is turned on automatically by the MDM. If this fails, restart the Mac, then open Fleet Desktop and click Refetch. If it still fails, contact IT.
-  platform: darwin

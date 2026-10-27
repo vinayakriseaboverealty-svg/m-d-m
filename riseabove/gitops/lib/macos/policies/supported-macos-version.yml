@@ -1,7 +1,0 @@
-# Raise the minimum when Apple stops shipping security updates for the oldest allowed version.
-- name: macOS version still receives security updates
-  query: SELECT 1 FROM os_version WHERE CAST(major AS INTEGER) >= 15;
-  critical: true
-  description: Checks that the Mac runs macOS 15 or later. Older versions no longer get security fixes.
-  resolution: Update macOS in  > System Settings > General > Software Update. If your Mac can't install a supported version, contact IT.
-  platform: darwin
